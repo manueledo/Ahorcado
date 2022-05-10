@@ -1,0 +1,52 @@
+import random
+
+palabras = ["archivo", "programar", "python", "java", "html", "codigo", "programacion", "seminario", "unity", "algoritmos", "software", "hardware"]
+
+print ("juguemos al ahorcado")
+print("Estas son las reglas, tenes que adivinar la palabra letra por letra y tenes 5 vidas")
+
+palabra_Que_Adivinar = random.choice(palabras)
+
+vidas = 5
+letras_Adivinadas = []
+print('_' * len(palabra_Que_Adivinar))
+
+while True:
+    letra_adivinada = input("adivine una letra ")
+    if(len(letra_adivinada)!=1 and letra_adivinada.isnumeric()):
+            print("Eso no es una letra, escribi una sola letra")
+    else:
+        if letra_adivinada.lower() in letras_Adivinadas:
+                print("Ya escribiste esa letra intenta con otra por favor")
+        else:
+            letras_Adivinadas.append(letra_adivinada)
+ 
+        if letra_adivinada.lower() in palabra_Que_Adivinar:
+            print("Muy bien adivinaste una letra")
+       
+        else:
+            vidas = vidas-1
+            print("Te equivocaste y perdiste una vida")
+            print("Te quedan " + str(vidas) + " vidas")
+            
+ 
+    if vidas ==0:
+
+        print("perdiste, la palabra era: " + palabra_Que_Adivinar)
+   
+        break  
+
+
+    progreso = ""
+    letras_faltantes = 0
+    
+    
+    for letra in palabra_Que_Adivinar:
+   
+        if letra in letras_Adivinadas:
+            progreso = progreso + letra
+        else:
+            progreso = progreso + "_"
+            letras_faltantes = letras_faltantes + 1
+ 
+    print(progreso) 
